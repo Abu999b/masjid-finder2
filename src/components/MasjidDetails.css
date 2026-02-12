@@ -90,6 +90,13 @@
   font-size: 18px;
 }
 
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .directions-btn {
   width: 100%;
   padding: 15px;
@@ -99,12 +106,38 @@
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 20px;
   transition: background-color 0.3s;
 }
 
 .directions-btn:hover {
   background-color: #218838;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+}
+
+.login-prompt {
+  text-align: center;
+  padding: 10px;
+  background-color: #e7f3ff;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.login-prompt a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {

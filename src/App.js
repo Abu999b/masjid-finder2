@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AdminMasjids from './pages/AdminMasjids';
 import AdminUsers from './pages/AdminUsers';
+import AdminRequests from './pages/AdminRequests';
+import MyRequests from './pages/MyRequests';
 
 const PrivateRoute = ({ children, adminOnly = false, mainAdminOnly = false }) => {
   const { user, loading } = useContext(AuthContext);
@@ -39,11 +41,33 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          
+          {/* User Routes */}
+          <Route
+            path="/my-requests"
+            element={
+              <PrivateRoute>
+                <MyRequests />
+              </PrivateRoute>
+            }
+          />
+          
+          {/* Admin Routes */}
           <Route
             path="/admin/masjids"
             element={
               <PrivateRoute adminOnly>
                 <AdminMasjids />
+              </PrivateRoute>
+            }
+          />
+          
+          {/* Main Admin Only Routes */}
+          <Route
+            path="/admin/requests"
+            element={
+              <PrivateRoute mainAdminOnly>
+                <AdminRequests />
               </PrivateRoute>
             }
           />

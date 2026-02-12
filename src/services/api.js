@@ -1,15 +1,17 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5000/api'|| process.env.REACT_APP_API_URL ;
+
+console.log('🔗 API URL:', API_URL);
 
 const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  timeout: 10000
 });
 
-// Add token to requests if available
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -19,6 +21,22 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response) {
+      console.error('API Error Response:', error.response.data);
+    } else if (error.request) {
+      console.error('API No Response:', error.request);
+    } else {
+      console.error('API Error:', error.message);
+    }
     return Promise.reject(error);
   }
 );
@@ -41,6 +59,15 @@ export const masjidAPI = {
   create: (data) => api.post('/masjids', data),
   update: (id, data) => api.put(`/masjids/${id}`, data),
   delete: (id) => api.delete(`/masjids/${id}`)
+};
+
+// Request API
+export const requestAPI = {
+  create: (data) => api.post('/requests', data),
+  getAll: (params) => api.get('/requests', { params }),
+  getMyRequests: () => api.get('/requests/my-requests'),
+  process: (id, data) => api.put(`/requests/${id}/process`, data),
+  delete: (id) => api.delete(`/requests/${id}`)
 };
 
 export default api;

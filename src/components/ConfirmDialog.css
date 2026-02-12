@@ -1,0 +1,34 @@
+.confirm-dialog {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-icon {
+  font-size: 60px;
+  margin-bottom: 15px;
+}
+
+.confirm-dialog h3 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.confirm-dialog p {
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.confirm-actions .btn {
+  min-width: 100px;
+}

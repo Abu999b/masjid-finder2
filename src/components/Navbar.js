@@ -30,18 +30,31 @@ const Navbar = () => {
                 <Link to="/admin/masjids" className="navbar-link">Manage Masjids</Link>
               </li>
               {user.role === 'main_admin' && (
-                <li className="navbar-item">
-                  <Link to="/admin/users" className="navbar-link">Manage Users</Link>
-                </li>
+                <>
+                  <li className="navbar-item">
+                    <Link to="/admin/requests" className="navbar-link">
+                      Requests
+                    </Link>
+                  </li>
+                  <li className="navbar-item">
+                    <Link to="/admin/users" className="navbar-link">Manage Users</Link>
+                  </li>
+                </>
               )}
             </>
+          )}
+
+          {user && user.role === 'user' && (
+            <li className="navbar-item">
+              <Link to="/my-requests" className="navbar-link">My Requests</Link>
+            </li>
           )}
           
           {user ? (
             <>
               <li className="navbar-item">
                 <span className="navbar-user">
-                  {user.name} ({user.role})
+                  {user.name} ({user.role.replace('_', ' ')})
                 </span>
               </li>
               <li className="navbar-item">
